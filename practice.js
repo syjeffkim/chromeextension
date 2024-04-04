@@ -6,7 +6,7 @@ class Clock { // created an object constructor that will have an object that sta
         this.clock = {
             seconds: 5
         }
-        console.log(this.clock.seconds);
+        //console.log(this.clock.seconds);
     }
     startTime() {
         this.clock.seconds--;
@@ -19,17 +19,42 @@ class Clock { // created an object constructor that will have an object that sta
         const display = document.getElementById('clock-display');
         display.innerHTML = this.clock.seconds;
     }
-
 }
 
 let newClock = new Clock; // changed to let b/c we are going to reassign in prompt functions
 setInterval(function() {newClock.startTime()}, 1000);
-console.log(newClock);
     
 // DOM parts of clock
 const clockContainer = document.createElement('div') // creating a div
 clockContainer.id = 'clock-display'; // add an id to the div
 document.body.appendChild(clockContainer) // appending our div container to the body of the doc
+// create a counter to know which picture to throw up and reassign to the src
+let counter = 0;
+const squirtle = document.createElement('img') // can't add the whole tag and src like in html
+squirtle.setAttribute('id', 'picture1'); // must create id and img  and src separate
+squirtle.setAttribute('src', 'pictures/squirtle.png')
+squirtle.setAttribute('width', "100px")
+squirtle.setAttribute('height', "100px")
+document.body.appendChild(squirtle)
+document.getElementById("picture1").style.visibility = "hidden"
+
+const wartortle = document.createElement('img') // can't add the whole tag and src like in html
+wartortle.setAttribute('id', 'picture2'); // must create id and img  and src separate
+wartortle.setAttribute('src', 'pictures/wartortle.png')
+wartortle.setAttribute('width', "100px")
+wartortle.setAttribute('height', "100px")
+document.body.appendChild(wartortle)
+document.getElementById("picture2").style.visibility = "hidden"
+
+const blastoise = document.createElement('img') // can't add the whole tag and src like in html
+blastoise.setAttribute('id', 'picture3'); // must create id and img  and src separate
+blastoise.setAttribute('src', 'pictures/blastoise.png')
+blastoise.setAttribute('width', "100px")
+blastoise.setAttribute('height', "100px")
+document.body.appendChild(blastoise);
+
+document.getElement
+document.getElementById("picture3").style.visibility = "hidden"
 
 // need to structure
     //Name of Timer
@@ -45,26 +70,25 @@ function promptPop () {
     }
 }
 
-// create a counter to know which picture to throw up and reassign to the src
-let counter = 0;
-function drink() {
+
+function drink(arg = counter) {
     //check if input mathes to yes
     let hydration = prompt("Did you have at least 12oz of water?");
     // if so enlarge photo of plant
     if (/[A-Za-z]/.test(hydration) && hydration.toLowerCase() === 'yes'){
         // thrown alert like good job
-        alert("Great, it'll help you focus!")
         // and restart timer funtion
         
         //if so throw prompt : and image
         // conidtional to know which picture to throw up
-        // if (counter === 0) {
-
-        const squirtle = document.createElement('img') // can't add the whole tag and src like in html
-        squirtle.setAttribute('id', 'picture'); // must create id and img  and src separate
-        squirtle.setAttribute('src', 'pictures/squirtle.png')
-        document.body.appendChild(squirtle);
+        if (arg === 0) {
+            console.log("bob")
+            document.getElementById("picture3").style.visibility = "visible"
+        }
+        console.log(arg);
+        alert("Great, it'll help you focus!")
         counter++;
+        console.log(counter);
         newClock = new Clock;
         return newClock.startTime;
     } else {
@@ -72,7 +96,6 @@ function drink() {
         newClock = new Clock;
         return newClock.startTime;
     }
-        
 }
 
 function populateImg() {
