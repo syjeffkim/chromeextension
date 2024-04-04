@@ -39,30 +39,48 @@ document.body.appendChild(clockContainer) // appending our div container to the 
 function promptPop () {
     // check if vaue of minutes and secods is strictly equal to 0
     if (newClock.clock.seconds === 0 /*&& newClock.clock.minutes === 0*/) {
-         //if so throw prompt : and image
         //and run function drink
-        const squirtle = document.createElement('<img src="./pictures/squirtle.png" alt="Squirtle">');
-        document.body.appendChild(squirtle);
-        alert("It's time for you to hydrate!");
-         return drink();
+        alert("It's time for you to hydrate!"); // added Did you drink your water?
+        return drink();
     }
 }
+
+// create a counter to know which picture to throw up and reassign to the src
+let counter = 0;
 function drink() {
     //check if input mathes to yes
     let hydration = prompt("Did you have at least 12oz of water?");
-        // if so enlarge photo of plant
+    // if so enlarge photo of plant
     if (/[A-Za-z]/.test(hydration) && hydration.toLowerCase() === 'yes'){
         // thrown alert like good job
         alert("Great, it'll help you focus!")
         // and restart timer funtion
+        
+        //if so throw prompt : and image
+        // conidtional to know which picture to throw up
+        // if (counter === 0) {
+
+        const squirtle = document.createElement('img') // can't add the whole tag and src like in html
+        squirtle.setAttribute('id', 'picture'); // must create id and img  and src separate
+        squirtle.setAttribute('src', 'pictures/squirtle.png')
+        document.body.appendChild(squirtle);
+        counter++;
         newClock = new Clock;
-        return startTime;
+        return newClock.startTime;
     } else {
         alert('You should think about choices you make.');
         newClock = new Clock;
-        return startTime;
+        return newClock.startTime;
     }
         
+}
+
+function populateImg() {
+    const squirtle = document.createElement('img') // can't add the whole tag and src like in html
+    squirtle.setAttribute('id', 'picture'); // must create id and img  and src separate
+    squirtle.setAttribute('src', 'pictures/squirtle.png')
+    document.body.appendChild(squirtle);
+    counter++;
 }
 
 // if no re run timmer only
