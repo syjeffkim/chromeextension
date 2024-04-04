@@ -22,7 +22,7 @@ class Clock { // created an object constructor that will have an object that sta
 }
 
 let newClock = new Clock; // changed to let b/c we are going to reassign in prompt functions
-setInterval(function() {newClock.startTime()}, 1000);
+const intervalID = setInterval(function() {newClock.startTime()}, 1000);
     
 // DOM parts of clock
 const clockContainer = document.createElement('div') // creating a div
@@ -53,8 +53,7 @@ blastoise.setAttribute('width', "100px")
 blastoise.setAttribute('height', "100px")
 document.body.appendChild(blastoise);
 
-document.getElement
-document.getElementById("picture3").style.visibility = "hidden"
+document.getElementById("picture3").style.visibility = "hidden";
 
 // need to structure
     //Name of Timer
@@ -70,6 +69,12 @@ function promptPop () {
     }
 }
 
+// sound function to play if they get all the way through.
+function playSound() {
+    let audio = new Audio('sounds/congrats.mp3')
+    audio.play();
+};
+
 
 function drink(arg = counter) {
     //check if input mathes to yes
@@ -82,11 +87,22 @@ function drink(arg = counter) {
         //if so throw prompt : and image
         // conidtional to know which picture to throw up
         if (arg === 0) {
-            console.log("bob")
+            //console.log("bob")
+            document.getElementById("picture1").style.visibility = "visible"
+            alert("Great, it'll help you focus!")
+        }
+        if (arg === 1) {
+            document.getElementById("picture2").style.visibility = "visible"
+            alert("Great, it'll help you focus!")
+        }
+        if (arg === 2) {
+    
             document.getElementById("picture3").style.visibility = "visible"
+            alert("You did great, don't forget to use the bathroom!")
+            playSound();
+            clearInterval(intervalID);
         }
         console.log(arg);
-        alert("Great, it'll help you focus!")
         counter++;
         console.log(counter);
         newClock = new Clock;
@@ -98,13 +114,15 @@ function drink(arg = counter) {
     }
 }
 
-function populateImg() {
-    const squirtle = document.createElement('img') // can't add the whole tag and src like in html
-    squirtle.setAttribute('id', 'picture'); // must create id and img  and src separate
-    squirtle.setAttribute('src', 'pictures/squirtle.png')
-    document.body.appendChild(squirtle);
-    counter++;
-}
+
+// thought about creating a function for the image, might make our code more efficient
+// function populateImg() {
+//     const squirtle = document.createElement('img') // can't add the whole tag and src like in html
+//     squirtle.setAttribute('id', 'picture'); // must create id and img  and src separate
+//     squirtle.setAttribute('src', 'pictures/squirtle.png')
+//     document.body.appendChild(squirtle);
+//     counter++;
+// }
 
 // if no re run timmer only
 // append this timer to the document
