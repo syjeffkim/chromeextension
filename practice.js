@@ -19,6 +19,7 @@ class Clock { // created an object constructor that will have an object that sta
         const display = document.getElementById('clock-display');
         display.innerHTML = this.clock.seconds;
     }
+
 }
 
 let newClock = new Clock; // changed to let b/c we are going to reassign in prompt functions
@@ -38,8 +39,10 @@ document.body.appendChild(clockContainer) // appending our div container to the 
 function promptPop () {
     // check if vaue of minutes and secods is strictly equal to 0
     if (newClock.clock.seconds === 0 /*&& newClock.clock.minutes === 0*/) {
-         //if so throw prompt : di
+         //if so throw prompt : and image
         //and run function drink
+        const squirtle = document.createElement('<img src="./pictures/squirtle.png" alt="Squirtle">');
+        document.body.appendChild(squirtle);
         alert("It's time for you to hydrate!");
          return drink();
     }
