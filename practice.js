@@ -1,4 +1,6 @@
 // build a timer logic
+// build a cache for pictures
+
 class Clock { // created an object constructor that will have an object that starts at g iven time and decrements time
     constructor() {
         this.clock = {
