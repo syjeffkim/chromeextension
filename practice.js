@@ -92,12 +92,13 @@ function drink(arg = counter) {
             alert("Great, it'll help you focus!")
         }
         if (arg === 1) {
-            document.getElementById("picture2").style.visibility = "visible"
+            squirtle.src = "pictures/wartortle.png"
+            //document.getElementById("picture2").style.visibility = "visible"
             alert("Great, it'll help you focus!")
         }
         if (arg === 2) {
-    
-            document.getElementById("picture3").style.visibility = "visible"
+            squirtle.src = "pictures/blastoise.png"
+            //document.getElementById("picture3").style.visibility = "visible"
             alert("You did great, don't forget to use the bathroom!")
             playSound();
             clearInterval(intervalID);
