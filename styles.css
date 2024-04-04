@@ -1,9 +1,22 @@
-/* body {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
+body {
+    font-family: 'Pokemon Solid', sans-serif;
+    max-height: 200 px;
+    padding: 0;
     margin: 0;
-} */
+}
+
+h2 {
+    text-align: center;
+    /* margin: 0;
+    padding: 0; */
+}
+
+div {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: whitesmoke;
+}
 
 h2 {
     color: aqua

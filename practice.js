@@ -1,21 +1,24 @@
-// build a timer logic
-// build a cache for pictures
 
-class Clock { // created an object constructor that will have an object that starts at g iven time and decrements time
-    constructor() {
-        this.clock = {
-            seconds: 5
+
+    // build a timer logic
+    // build a cache for pictures
+    
+    class Clock { // created an object constructor that will have an object that starts at g iven time and decrements time
+        constructor() {
+            this.clock = {
+                seconds: 5
+            }
+            //console.log(this.clock.seconds);
         }
-        //console.log(this.clock.seconds);
-    }
-    startTime() {
-        this.clock.seconds--;
-        this.ourDisplay();
-        if (this.clock.seconds <= 0) { // stops at 1, we need it to go to 0s
-            promptPop() // add prompt code
+        startTime() {
+            this.clock.seconds--;
+            this.ourDisplay();
+            if (this.clock.seconds <= 0) { // stops at 1, we need it to go to 0s
+                promptPop() // add prompt code
+            }
         }
-    }
-    ourDisplay() {
+        ourDisplay() {
+
         const display = document.getElementById('clock-display');
         display.innerHTML = this.clock.seconds;
     }
@@ -38,22 +41,21 @@ squirtle.setAttribute('height', "100px")
 document.body.appendChild(squirtle)
 document.getElementById("picture1").style.visibility = "hidden"
 
-const wartortle = document.createElement('img') // can't add the whole tag and src like in html
-wartortle.setAttribute('id', 'picture2'); // must create id and img  and src separate
-wartortle.setAttribute('src', 'pictures/wartortle.png')
-wartortle.setAttribute('width', "100px")
-wartortle.setAttribute('height', "100px")
-document.body.appendChild(wartortle)
-document.getElementById("picture2").style.visibility = "hidden"
+// const wartortle = document.createElement('img') // can't add the whole tag and src like in html
+// wartortle.setAttribute('id', 'picture2'); // must create id and img  and src separate
+// wartortle.setAttribute('src', 'pictures/wartortle.png')
+// wartortle.setAttribute('width', "100px")
+// wartortle.setAttribute('height', "100px")
+// document.body.appendChild(wartortle)
+// document.getElementById("picture2").style.visibility = "hidden"
 
-const blastoise = document.createElement('img') // can't add the whole tag and src like in html
-blastoise.setAttribute('id', 'picture3'); // must create id and img  and src separate
-blastoise.setAttribute('src', 'pictures/blastoise.png')
-blastoise.setAttribute('width', "100px")
-blastoise.setAttribute('height', "100px")
-document.body.appendChild(blastoise);
-
-document.getElementById("picture3").style.visibility = "hidden";
+// const blastoise = document.createElement('img') // can't add the whole tag and src like in html
+// blastoise.setAttribute('id', 'picture3'); // must create id and img  and src separate
+// blastoise.setAttribute('src', 'pictures/blastoise.png')
+// blastoise.setAttribute('width', "100px")
+// blastoise.setAttribute('height', "100px")
+// document.body.appendChild(blastoise);
+// document.getElementById("picture3").style.visibility = "hidden";
 
 // need to structure
     //Name of Timer
@@ -70,17 +72,31 @@ function promptPop () {
 }
 
 // sound function to play if they get all the way through.
-function playSound() {
-    let audio = new Audio('sounds/congrats.mp3')
+function playSound(volumelevel) {
+    let audio = new Audio('sounds/congrats.mp3');
+    audio.volume = volumelevel;
     audio.play();
 };
 
 
+// let newString = '';
+//   
 function drink(arg = counter) {
     //check if input mathes to yes
     let hydration = prompt("Did you have at least 12oz of water?");
-    // if so enlarge photo of plant
-    if (/[A-Za-z]/.test(hydration) && hydration.toLowerCase() === 'yes'){
+    let result = '';
+    //add edge case if there is no prompt input that will restart the clock anyway 
+    if (!hydration) {
+        alert('You should think about choices you make.');
+        newClock = new Clock;
+        return newClock.startTime;
+    }
+    
+    for (const char of hydration) {
+             if (/[A-Za-z]/.test(char)) result += char.toLowerCase();
+      }
+    //const fixedString = hydration.replaceAll(/A-Za-z/gi, "")
+    if (result === 'yes'){
         // thrown alert like good job
         // and restart timer funtion
         
@@ -100,7 +116,9 @@ function drink(arg = counter) {
             squirtle.src = "pictures/blastoise.png"
             //document.getElementById("picture3").style.visibility = "visible"
             alert("You did great, don't forget to use the bathroom!")
-            playSound();
+            document.getElementById('picture1').addEventListener('click', function() {
+                playSound(0.2);
+            });
             clearInterval(intervalID);
         }
         console.log(arg);
